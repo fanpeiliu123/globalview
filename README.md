@@ -2,6 +2,11 @@
 
 面向中国内地留学生的硕士研究生申请案例检索系统。当前版本已经完成可运行网站、硕士案例库、国家/大学/项目分类、案例详情、对比栏、AI 检索上下文预留和案例导入脚本。
 
+## 线上地址
+
+- Public site: https://globalview-kappa.vercel.app
+- GitHub: https://github.com/fanpeiliu123/globalview
+
 ## 运行
 
 ```bash
