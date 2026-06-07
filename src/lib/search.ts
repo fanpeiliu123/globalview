@@ -1,15 +1,19 @@
-import { admissionCases } from "../data/cases";
+import { allCases } from "../data/allCases";
 import { programSources } from "../data/programSources";
+import { countryLabels } from "./geo";
 import type {
   AdmissionResult,
   AiRetrievalRequest,
   AiRetrievalResponse,
   CaseRecord,
   CaseSearchFilters,
+  CaseSortKey,
   CountryCode,
   Discipline,
   SearchResult,
 } from "./types";
+
+export const admissionCases = allCases;
 
 export const defaultFilters: CaseSearchFilters = {
   keyword: "",
@@ -38,15 +42,7 @@ export const resultTone: Record<AdmissionResult, string> = {
   reject: "danger",
 };
 
-export const countryLabels: Record<CountryCode, string> = {
-  US: "美国",
-  UK: "英国",
-  CA: "加拿大",
-  AU: "澳大利亚",
-  SG: "新加坡",
-  HK: "中国香港",
-  CH: "瑞士",
-};
+export { countryLabels };
 
 export function getLanguageScore(caseRecord: CaseRecord) {
   const { ielts, toefl } = caseRecord.profile.language;
@@ -204,6 +200,23 @@ export function searchCases(
     .sort((a, b) => b.score - a.score || a.caseRecord.id.localeCompare(b.caseRecord.id));
 }
 
+export function sortResults(results: SearchResult[], sortKey: CaseSortKey): SearchResult[] {
+  const copy = [...results];
+  switch (sortKey) {
+    case "gpaDesc":
+      return copy.sort((a, b) => b.caseRecord.profile.gpa - a.caseRecord.profile.gpa);
+    case "gpaAsc":
+      return copy.sort((a, b) => a.caseRecord.profile.gpa - b.caseRecord.profile.gpa);
+    case "recent":
+      return copy.sort((a, b) =>
+        b.caseRecord.offerDate.localeCompare(a.caseRecord.offerDate),
+      );
+    case "match":
+    default:
+      return copy;
+  }
+}
+
 export function getCaseById(caseId: string) {
   return admissionCases.find((caseRecord) => caseRecord.id === caseId);
 }
@@ -226,7 +239,9 @@ export function getStats(cases: CaseRecord[] = admissionCases) {
     conditional,
     countries,
     programs,
-    admitRate: Math.round(((admits + conditional) / cases.length) * 100),
+    admitRate: cases.length
+      ? Math.round(((admits + conditional) / cases.length) * 100)
+      : 0,
   };
 }
 

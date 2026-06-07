@@ -6,3 +6,4 @@ tsconfig.tsbuildinfo
 .env.local
 data/generated-cases.json
 .vercel
+.claude

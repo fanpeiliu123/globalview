@@ -3,11 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0a3d30" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#16785d" media="(prefers-color-scheme: light)" />
+
+    <title>GlobalView · 硕士研究生申请案例情报库与交付平台</title>
     <meta
       name="description"
-      content="GlobalView 是面向中国内地留学生的硕士研究生申请案例检索系统。"
+      content="GlobalView 汇聚全球头部院校的硕士录取与申请案例，按国家、大学、项目与背景精准检索，提供数据洞察、AI 智能匹配与可交付的申请情报。面向中国留学生的世界一流硕士申请案例库。"
     />
-    <title>GlobalView | 硕士申请案例库</title>
+    <meta name="keywords" content="硕士申请,留学案例,录取案例,选校,商业分析,数据科学,案例库,GlobalView,master admissions,case library" />
+    <meta name="author" content="GlobalView" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GlobalView · 硕士研究生申请案例情报库" />
+    <meta
+      property="og:description"
+      content="用真实先例做出更聪明的留学申请决策。全球头部院校硕士案例检索、数据洞察与 AI 智能匹配。"
+    />
+    <meta property="og:site_name" content="GlobalView" />
+    <meta property="og:url" content="https://globalview-kappa.vercel.app" />
+    <meta property="og:image" content="/og-cover.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GlobalView · 硕士申请案例情报库" />
+    <meta name="twitter:description" content="全球头部院校硕士案例检索、数据洞察与 AI 智能匹配。" />
+    <meta name="twitter:image" content="/og-cover.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Apply persisted theme & locale before paint to avoid a flash.
+      (function () {
+        try {
+          var t = localStorage.getItem("gv-theme");
+          if (!t) {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+          var l = localStorage.getItem("gv-locale");
+          if (l === "en") document.documentElement.lang = "en";
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

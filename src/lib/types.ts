@@ -7,7 +7,10 @@ export type CountryCode =
   | "AU"
   | "SG"
   | "HK"
-  | "CH";
+  | "CH"
+  | "DE"
+  | "NL"
+  | "JP";
 
 export type AdmissionResult =
   | "admit"
@@ -47,6 +50,11 @@ export interface ProgramSource {
   officialUrl: string;
   sourceNote: string;
   tags: string[];
+  /** Optional enrichment used by the Programs catalogue. Safe to omit for imports. */
+  qsRank?: number;
+  tuition?: string;
+  deadlineNote?: string;
+  stemDesignated?: boolean;
 }
 
 export interface ApplicantProfile {
@@ -106,6 +114,8 @@ export interface CaseSearchFilters {
   minLanguage: number;
   withGreGmat: "all" | "yes" | "no";
 }
+
+export type CaseSortKey = "match" | "gpaDesc" | "gpaAsc" | "recent";
 
 export interface SearchResult {
   caseRecord: CaseRecord;

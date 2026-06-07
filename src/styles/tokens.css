@@ -1,0 +1,192 @@
+/* ============================================================================
+   GlobalView Design Tokens
+   A premium, international design language: deep emerald + warm gold accents,
+   editorial serif display type, a precise neutral scale, and a refined dark mode.
+   ========================================================================== */
+
+:root {
+  /* ---- Type families ---- */
+  --font-sans: "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC",
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Newsreader", "Songti SC", "PingFang SC", Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+
+  /* ---- Brand: emerald ---- */
+  --brand-50: #e9f4ef;
+  --brand-100: #cfe8de;
+  --brand-200: #a6d4c2;
+  --brand-300: #6fb89e;
+  --brand-400: #3d9678;
+  --brand-500: #16785d;
+  --brand-600: #0f6049;
+  --brand-700: #0c4d3b;
+  --brand-800: #0a3d30;
+  --brand-900: #082e25;
+
+  /* ---- Accent: warm gold ---- */
+  --gold-50: #faf2dd;
+  --gold-100: #f4e3ba;
+  --gold-200: #ecce8a;
+  --gold-300: #ddb05a;
+  --gold-400: #c9942f;
+  --gold-500: #ad7d22;
+  --gold-600: #8a631b;
+
+  /* ---- Supporting hues ---- */
+  --blue-100: #d9e7f7;
+  --blue-500: #2f5f9f;
+  --blue-700: #214778;
+  --rust-100: #f6ddd8;
+  --rust-500: #b8534a;
+  --rust-700: #8a3a33;
+  --amber-100: #f8e7c4;
+  --amber-600: #9a6c12;
+
+  /* ---- Neutral scale (warm-cool gray) ---- */
+  --gray-0: #ffffff;
+  --gray-25: #fafbfa;
+  --gray-50: #f4f6f4;
+  --gray-100: #eaefeb;
+  --gray-150: #dfe6e1;
+  --gray-200: #d2dbd5;
+  --gray-300: #b7c3bc;
+  --gray-400: #8fa098;
+  --gray-500: #6a7c73;
+  --gray-600: #51615a;
+  --gray-700: #3a4842;
+  --gray-800: #25302b;
+  --gray-900: #131a16;
+
+  /* ---- Semantic surface / text (LIGHT theme) ---- */
+  --bg: #f7f9f6;
+  --bg-tint: radial-gradient(1200px 600px at 12% -8%, rgba(22, 120, 93, 0.08), transparent 60%),
+    radial-gradient(1000px 520px at 96% 4%, rgba(201, 148, 47, 0.07), transparent 55%);
+  --surface: #ffffff;
+  --surface-2: #f4f7f4;
+  --surface-3: #eaefeb;
+  --surface-inset: #f0f4f1;
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(210, 219, 213, 0.8);
+
+  --ink: #131a16;
+  --text: #2c3a33;
+  --muted: #5d6e66;
+  --faint: #8294;
+  --line: #e0e7e1;
+  --line-strong: #cdd8d0;
+
+  --brand: var(--brand-500);
+  --brand-strong: var(--brand-700);
+  --brand-ink: #0a3d30;
+  --brand-soft: #e6f2ec;
+  --brand-soft-2: #d6ebe1;
+  --on-brand: #f3fbf7;
+
+  --accent: var(--gold-400);
+  --accent-strong: var(--gold-600);
+  --accent-soft: #f7ecd2;
+
+  --success: #16785d;
+  --success-soft: #d9ede6;
+  --success-ink: #0d5443;
+  --warning: #9a6c12;
+  --warning-soft: #f6e7c6;
+  --warning-ink: #6f4a08;
+  --info: #2f5f9f;
+  --info-soft: #dce8f7;
+  --info-ink: #214778;
+  --danger: #b8534a;
+  --danger-soft: #f5ded9;
+  --danger-ink: #87362f;
+
+  /* ---- Radii ---- */
+  --r-xs: 6px;
+  --r-sm: 9px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-2xl: 30px;
+  --r-pill: 999px;
+
+  /* ---- Elevation (layered, soft) ---- */
+  --shadow-xs: 0 1px 2px rgba(19, 26, 22, 0.06);
+  --shadow-sm: 0 2px 8px rgba(19, 26, 22, 0.06), 0 1px 2px rgba(19, 26, 22, 0.05);
+  --shadow-md: 0 10px 26px rgba(19, 26, 22, 0.08), 0 2px 6px rgba(19, 26, 22, 0.05);
+  --shadow-lg: 0 22px 50px rgba(19, 26, 22, 0.12), 0 6px 14px rgba(19, 26, 22, 0.06);
+  --shadow-xl: 0 40px 90px rgba(19, 26, 22, 0.18), 0 10px 24px rgba(19, 26, 22, 0.08);
+  --ring: 0 0 0 3px rgba(22, 120, 93, 0.18);
+
+  /* ---- Gradients ---- */
+  --grad-brand: linear-gradient(135deg, #0f6049 0%, #16785d 48%, #1d8e6a 100%);
+  --grad-brand-deep: linear-gradient(150deg, #0a3d30 0%, #0f5644 55%, #14705a 100%);
+  --grad-gold: linear-gradient(135deg, #c9942f, #ddb05a);
+  --grad-hero: linear-gradient(160deg, #082e25 0%, #0b3b2e 42%, #0f5443 100%);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 420ms;
+
+  /* ---- Layout ---- */
+  --maxw: 1240px;
+  --maxw-wide: 1440px;
+  --header-h: 68px;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0a1310;
+  --bg-tint: radial-gradient(1200px 620px at 10% -10%, rgba(29, 142, 106, 0.16), transparent 60%),
+    radial-gradient(1000px 520px at 98% 2%, rgba(201, 148, 47, 0.1), transparent 55%);
+  --surface: #111c17;
+  --surface-2: #16231d;
+  --surface-3: #1d2b24;
+  --surface-inset: #14201b;
+  --glass: rgba(17, 28, 23, 0.7);
+  --glass-border: rgba(45, 60, 51, 0.8);
+
+  --ink: #f0f5f2;
+  --text: #d4ddd8;
+  --muted: #93a69c;
+  --faint: #6f8579;
+  --line: #243029;
+  --line-strong: #324036;
+
+  --brand: #2fa98a;
+  --brand-strong: #46c2a1;
+  --brand-ink: #bde9da;
+  --brand-soft: rgba(47, 169, 138, 0.14);
+  --brand-soft-2: rgba(47, 169, 138, 0.22);
+  --on-brand: #06120d;
+
+  --accent: #e0b65c;
+  --accent-strong: #ecce8a;
+  --accent-soft: rgba(224, 182, 92, 0.16);
+
+  --success: #3fbf99;
+  --success-soft: rgba(47, 169, 138, 0.18);
+  --success-ink: #8fe6cd;
+  --warning: #e0b65c;
+  --warning-soft: rgba(224, 182, 92, 0.16);
+  --warning-ink: #f1d79a;
+  --info: #7aa6e0;
+  --info-soft: rgba(95, 145, 215, 0.18);
+  --info-ink: #b9d2f3;
+  --danger: #e08178;
+  --danger-soft: rgba(208, 110, 100, 0.18);
+  --danger-ink: #f3b7b0;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 42px 90px rgba(0, 0, 0, 0.62);
+  --ring: 0 0 0 3px rgba(47, 169, 138, 0.28);
+
+  --grad-brand: linear-gradient(135deg, #0f6049 0%, #1d8e6a 55%, #2fa98a 100%);
+  --grad-brand-deep: linear-gradient(150deg, #06150f 0%, #0c3527 55%, #14705a 100%);
+  --grad-hero: linear-gradient(160deg, #06140f 0%, #0a2c22 45%, #0f4a3b 100%);
+  color-scheme: dark;
+}

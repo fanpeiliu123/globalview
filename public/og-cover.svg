@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#082e25" />
+      <stop offset="0.55" stop-color="#0b3b2e" />
+      <stop offset="1" stop-color="#0f5443" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.1" r="0.6">
+      <stop stop-color="#c9942f" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#c9942f" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1d8e6a" />
+      <stop offset="1" stop-color="#0a3d30" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <g transform="translate(96 96)">
+    <rect width="84" height="84" rx="22" fill="url(#mark)" stroke="rgba(255,255,255,0.18)" />
+    <circle cx="42" cy="42" r="24" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="3" />
+    <path d="M18 42h48M42 18c7 6.5 11 15 11 24S49 59.5 42 66c-7-6.5-11-15-11-24S35 24.5 42 18Z"
+      fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="3" />
+    <circle cx="58" cy="28" r="6.5" fill="#e6c068" stroke="#0a3d30" stroke-width="2.6" />
+    <text x="108" y="38" fill="#ffffff" font-family="Inter, sans-serif" font-size="34" font-weight="700">GlobalView</text>
+    <text x="108" y="68" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="20">Master Case Intelligence</text>
+  </g>
+  <text x="96" y="320" fill="#ffffff" font-family="Newsreader, Georgia, serif" font-size="76" font-weight="500">用真实先例，</text>
+  <text x="96" y="408" fill="#ffffff" font-family="Newsreader, Georgia, serif" font-size="76" font-weight="500">做更聪明的留学决策</text>
+  <text x="96" y="486" fill="rgba(255,255,255,0.78)" font-family="Inter, sans-serif" font-size="28">全球头部院校硕士申请案例 · 数据洞察 · AI 智能匹配</text>
+  <g transform="translate(96 540)" font-family="Inter, sans-serif" font-size="22" fill="rgba(255,255,255,0.9)">
+    <rect x="0" y="0" width="190" height="48" rx="24" fill="rgba(255,255,255,0.1)" />
+    <text x="28" y="31">10 国家与地区</text>
+    <rect x="210" y="0" width="160" height="48" rx="24" fill="rgba(255,255,255,0.1)" />
+    <text x="238" y="31">36 头部项目</text>
+    <rect x="390" y="0" width="160" height="48" rx="24" fill="rgba(255,255,255,0.1)" />
+    <text x="418" y="31">50 结构化案例</text>
+  </g>
+</svg>

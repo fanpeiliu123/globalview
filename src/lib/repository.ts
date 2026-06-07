@@ -1,4 +1,4 @@
-import { admissionCases } from "../data/cases";
+import { allCases as admissionCases } from "../data/allCases";
 import { programSources } from "../data/programSources";
 import type {
   AiRetrievalRequest,
