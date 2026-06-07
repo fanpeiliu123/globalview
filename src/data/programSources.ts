@@ -1,6 +1,14 @@
 import type { ProgramSource } from "../lib/types";
+import realProgramsRaw from "./realPrograms.json";
 
-export const programSources: ProgramSource[] = [
+/**
+ * DESIGNATED DROP-IN LOCATION: put your real programs into
+ * `src/data/realPrograms.json` (an array of ProgramSource objects). When that
+ * file is a non-empty array it REPLACES the seed catalogue below.
+ * Generate it with: npm run import:programs -- <your-file.csv> src/data/realPrograms.json
+ * See docs/database-setup.md.
+ */
+const seedProgramSources: ProgramSource[] = [
   // ───────────────────────── United States ─────────────────────────
   {
     id: "harvard-data-science",
@@ -766,3 +774,10 @@ export const programSources: ProgramSource[] = [
     deadlineNote: "依研究室与入学季而定",
   },
 ];
+
+const realPrograms = realProgramsRaw as unknown as ProgramSource[];
+
+export const usingRealProgramData = realPrograms.length > 0;
+export const programSources: ProgramSource[] = usingRealProgramData
+  ? realPrograms
+  : seedProgramSources;

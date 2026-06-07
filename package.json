@@ -7,7 +7,9 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "import:cases": "node scripts/import-cases.mjs"
+    "import:cases": "node scripts/import-cases.mjs",
+    "import:programs": "node scripts/import-programs.mjs",
+    "validate:data": "node scripts/validate-data.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^6.0.2",
