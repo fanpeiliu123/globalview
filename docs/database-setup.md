@@ -236,6 +236,8 @@ git push origin <你的分支>:main
 
 ## 5. 方式 B：真实数据库 + 自动导出（生产级）
 
+> ✅ **已为 Supabase 实现完毕**。如果你用 Supabase，直接看 **`docs/supabase-setup.md`**（含建表 SQL、`db:push` / `db:export` 脚本、Vercel 环境变量与自动重部署）。下面是通用原理与其它数据库的参考。
+
 思路：把 **PostgreSQL 作为唯一事实来源**，构建前用一个导出脚本把数据库导成 `realPrograms.json` / `realCases.json`，前端依旧静态、零运行时数据库成本。需要在线写入/检索时，再加 API 路由（5.5）。
 
 ### 5.1 开通数据库（Vercel Marketplace）

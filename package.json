@@ -5,13 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
+    "prebuild": "node scripts/db-export.mjs && node scripts/validate-data.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "import:cases": "node scripts/import-cases.mjs",
     "import:programs": "node scripts/import-programs.mjs",
-    "validate:data": "node scripts/validate-data.mjs"
+    "validate:data": "node scripts/validate-data.mjs",
+    "db:push": "node scripts/db-push.mjs",
+    "db:export": "node scripts/db-export.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.107.0",
     "@vitejs/plugin-react": "^6.0.2",
     "lucide-react": "^0.562.0",
     "react": "^19.2.6",

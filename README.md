@@ -52,7 +52,13 @@ npm run preview
 npm run import:cases -- docs/case-import-template.csv data/generated-cases.json
 ```
 
-导入脚本支持 `.csv` 和 `.json`。真实案例进入系统前应先完成匿名化：姓名、邮箱、手机号、微信号、申请账号、精确住址和可反查身份的奖项编号不要进入前端库。导入后将结果合并进 `src/data/allCases.ts` 或对接服务端数据库。
+导入脚本支持 `.csv` 和 `.json`。真实案例进入系统前应先完成匿名化：姓名、邮箱、手机号、微信号、申请账号、精确住址和可反查身份的奖项编号不要进入前端库。
+
+## 接入真实数据库
+
+- **Supabase（已实现）**：见 `docs/supabase-setup.md`。`npm run db:push` 把数据写入 Supabase，`npm run db:export` 在构建前自动导回前端。
+- **数据规范与校验**：见 `docs/database-setup.md`（字段字典、隐私脱敏、`npm run validate:data` 校验）。
+- 真实数据放入 `src/data/realPrograms.json` / `src/data/realCases.json`（非空即自动替换种子数据）。
 
 ## 目录结构
 
