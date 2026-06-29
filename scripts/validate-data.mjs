@@ -6,9 +6,53 @@ import { readFile } from "node:fs/promises";
 const ROOT = new URL("..", import.meta.url);
 const rel = (p) => new URL(p, ROOT);
 
-const COUNTRIES = ["US", "UK", "CA", "AU", "SG", "HK", "CH", "DE", "NL", "JP"];
+const COUNTRIES = [
+  "US",
+  "UK",
+  "CA",
+  "AU",
+  "SG",
+  "HK",
+  "CH",
+  "DE",
+  "NL",
+  "JP",
+  "CN",
+  "FR",
+  "KR",
+  "MY",
+  "TW",
+  "SE",
+  "SA",
+  "BE",
+  "IE",
+  "NZ",
+];
 const RESULTS = ["admit", "conditional", "waitlist", "reject"];
-const DISCIPLINES = ["计算机与数据", "商业分析", "管理与市场", "信息系统", "金融商科"];
+const DISCIPLINES = [
+  "计算机与数据",
+  "商业分析",
+  "管理与市场",
+  "信息系统",
+  "金融商科",
+  "工程与技术",
+  "医学与健康",
+  "人文学科",
+  "商业与管理",
+  "社会科学",
+  "艺术设计与建筑",
+  "教育",
+  "计算机与信息技术",
+  "生命科学与生物",
+  "经济与金融",
+  "数据科学与人工智能",
+  "环境与可持续发展",
+  "自然科学",
+  "法学",
+  "公共政策与管理",
+  "数学与统计",
+  "媒体与传播",
+];
 const TIERS = ["C9/985", "211", "双非一本", "中外合作", "海外本科"];
 const SELECTIVITY = ["高竞争", "中高竞争", "稳健匹配"];
 

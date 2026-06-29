@@ -1,10 +1,10 @@
 import type { ProgramSource } from "../lib/types";
-import realProgramsRaw from "./realPrograms.json";
 
 /**
  * DESIGNATED DROP-IN LOCATION: put your real programs into
- * `src/data/realPrograms.json` (an array of ProgramSource objects). When that
- * file is a non-empty array it REPLACES the seed catalogue below.
+ * `src/data/realPrograms.json` (an array of ProgramSource objects). The full
+ * catalogue is loaded by `programCatalogue.ts` so the rest of the app can stay
+ * fast and keep using this lightweight seed index for case lookups.
  * Generate it with: npm run import:programs -- <your-file.csv> src/data/realPrograms.json
  * See docs/database-setup.md.
  */
@@ -775,9 +775,4 @@ const seedProgramSources: ProgramSource[] = [
   },
 ];
 
-const realPrograms = realProgramsRaw as unknown as ProgramSource[];
-
-export const usingRealProgramData = realPrograms.length > 0;
-export const programSources: ProgramSource[] = usingRealProgramData
-  ? realPrograms
-  : seedProgramSources;
+export const programSources: ProgramSource[] = seedProgramSources;

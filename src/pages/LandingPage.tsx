@@ -14,6 +14,7 @@ import {
 import { useI18n } from "../i18n";
 import { Reveal } from "../components/ui/common";
 import { DonutChart, BarList } from "../components/charts/Charts";
+import catalogueStats from "../data/programCatalogueStats.json";
 import { programSources } from "../data/programSources";
 import {
   countryDistribution,
@@ -192,7 +193,10 @@ function StatsBand() {
 
 function UniversityMarquee() {
   const { t } = useI18n();
-  const names = [...new Set(programSources.map((p) => p.university))];
+  const names =
+    catalogueStats.featuredUniversities.length > 0
+      ? catalogueStats.featuredUniversities
+      : [...new Set(programSources.map((p) => p.university))];
   const loop = [...names, ...names];
   return (
     <section className="marquee-section">

@@ -1,4 +1,5 @@
 import { allCases } from "../data/allCases";
+import catalogueStats from "../data/programCatalogueStats.json";
 import { programSources } from "../data/programSources";
 import { countryMeta } from "./geo";
 import type {
@@ -190,13 +191,20 @@ export function gpaStats(cases: CaseRecord[] = allCases) {
 
 export function summaryStats(cases: CaseRecord[] = allCases) {
   const admits = cases.filter((item) => isPositive(item.result)).length;
+  const catalogProgramCount = Number(catalogueStats.programs || 0);
+  const programCountries =
+    Number(catalogueStats.countries || 0) ||
+    new Set(programSources.map((item) => item.country)).size;
+  const programUniversities =
+    Number(catalogueStats.universities || 0) ||
+    new Set(programSources.map((item) => item.universityId ?? item.university)).size;
   return {
     total: cases.length,
     // "头部硕士项目" reflects the official program catalogue coverage.
-    programs: programSources.length,
+    programs: catalogProgramCount || programSources.length,
     casedPrograms: new Set(cases.map((item) => item.programId)).size,
-    countries: new Set(cases.map((item) => item.country)).size,
-    universities: new Set(cases.map((item) => item.universityCn)).size,
+    countries: programCountries || new Set(cases.map((item) => item.country)).size,
+    universities: programUniversities || new Set(cases.map((item) => item.universityCn)).size,
     admitRate: pct(admits, cases.length),
     gpa: gpaStats(cases),
   };

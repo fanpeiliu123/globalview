@@ -7,14 +7,15 @@
 -- ---------------------------------------------------------------- programs
 create table if not exists public.programs (
   id              text primary key,
-  country         text not null check (country in ('US','UK','CA','AU','SG','HK','CH','DE','NL','JP')),
+  country         text not null,
   country_name    text not null,
   city            text,
   university      text not null,
   university_cn   text not null,
   program         text not null,
+  program_zh      text,
   degree          text,
-  discipline      text not null check (discipline in ('计算机与数据','商业分析','管理与市场','信息系统','金融商科')),
+  discipline      text not null,
   duration        text,
   intake          text,
   selectivity     text check (selectivity in ('高竞争','中高竞争','稳健匹配')),
@@ -22,12 +23,40 @@ create table if not exists public.programs (
   source_note     text,
   tags            jsonb not null default '[]'::jsonb,
   qs_rank         integer,
+  university_id   text,
+  university_type text,
+  region          text,
+  faculty         text,
+  department      text,
+  raw_discipline  text,
   tuition         text,
   deadline_note   text,
+  language_requirements text,
+  gre_required    text,
+  entry_requirements text,
+  source_urls     jsonb not null default '[]'::jsonb,
+  data_completeness integer,
+  last_updated    date,
   stem_designated boolean,
   created_at      timestamptz not null default now(),
   updated_at      timestamptz not null default now()
 );
+
+alter table if exists public.programs drop constraint if exists programs_country_check;
+alter table if exists public.programs drop constraint if exists programs_discipline_check;
+alter table if exists public.programs add column if not exists program_zh text;
+alter table if exists public.programs add column if not exists university_id text;
+alter table if exists public.programs add column if not exists university_type text;
+alter table if exists public.programs add column if not exists region text;
+alter table if exists public.programs add column if not exists faculty text;
+alter table if exists public.programs add column if not exists department text;
+alter table if exists public.programs add column if not exists raw_discipline text;
+alter table if exists public.programs add column if not exists language_requirements text;
+alter table if exists public.programs add column if not exists gre_required text;
+alter table if exists public.programs add column if not exists entry_requirements text;
+alter table if exists public.programs add column if not exists source_urls jsonb not null default '[]'::jsonb;
+alter table if exists public.programs add column if not exists data_completeness integer;
+alter table if exists public.programs add column if not exists last_updated date;
 
 -- ------------------------------------------------------------------- cases
 create table if not exists public.cases (
@@ -35,12 +64,12 @@ create table if not exists public.cases (
   applicant_alias text,
   degree_level    text not null default 'master',
   program_id      text not null references public.programs(id) on update cascade,
-  country         text not null check (country in ('US','UK','CA','AU','SG','HK','CH','DE','NL','JP')),
+  country         text not null,
   country_name    text not null,
   university      text not null,
   university_cn   text not null,
   program         text not null,
-  discipline      text not null check (discipline in ('计算机与数据','商业分析','管理与市场','信息系统','金融商科')),
+  discipline      text not null,
   result          text not null check (result in ('admit','conditional','waitlist','reject')),
   season          text not null,
   round           text,
@@ -68,6 +97,9 @@ create table if not exists public.cases (
   created_at      timestamptz not null default now(),
   updated_at      timestamptz not null default now()
 );
+
+alter table if exists public.cases drop constraint if exists cases_country_check;
+alter table if exists public.cases drop constraint if exists cases_discipline_check;
 
 create index if not exists idx_cases_country    on public.cases(country);
 create index if not exists idx_cases_discipline on public.cases(discipline);

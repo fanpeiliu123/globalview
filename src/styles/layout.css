@@ -12,6 +12,15 @@ main#main {
   flex: 1;
 }
 
+.route-loading {
+  display: grid;
+  min-height: 42vh;
+  place-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+}
+
 /* ---- Reveal animation ---- */
 .reveal {
   opacity: 0;

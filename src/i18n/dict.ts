@@ -441,6 +441,23 @@ export const disciplineEn: Record<string, string> = {
   管理与市场: "Management & Marketing",
   信息系统: "Information Systems",
   金融商科: "Finance & Business",
+  工程与技术: "Engineering & Technology",
+  医学与健康: "Medicine & Health",
+  人文学科: "Humanities",
+  商业与管理: "Business & Management",
+  社会科学: "Social Sciences",
+  艺术设计与建筑: "Arts, Design & Architecture",
+  教育: "Education",
+  计算机与信息技术: "Computer Science & IT",
+  生命科学与生物: "Life Sciences & Biology",
+  经济与金融: "Economics & Finance",
+  数据科学与人工智能: "Data Science & AI",
+  环境与可持续发展: "Environment & Sustainability",
+  自然科学: "Natural Sciences",
+  法学: "Law",
+  公共政策与管理: "Public Policy & Administration",
+  数学与统计: "Mathematics & Statistics",
+  媒体与传播: "Media & Communication",
 };
 
 export const tierEn: Record<string, string> = {

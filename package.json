@@ -10,6 +10,7 @@
     "preview": "vite preview --host 0.0.0.0",
     "import:cases": "node scripts/import-cases.mjs",
     "import:programs": "node scripts/import-programs.mjs",
+    "import:qs-verified": "node scripts/import-qs-verified.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "db:push": "node scripts/db-push.mjs",
     "db:export": "node scripts/db-export.mjs"

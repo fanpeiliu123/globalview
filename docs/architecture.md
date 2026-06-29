@@ -23,7 +23,10 @@ GlobalView 是一个面向中国留学生的硕士研究生申请案例情报库
 
 ## Data Boundary
 
-- `src/data/programSources.ts`: 官方项目源（国家、大学、项目分类与排名/学费/截止等元数据）。
+- `src/data/programSources.ts`: 轻量官方项目索引，用于案例详情和首页兼容。
+- `src/data/programCatalogue.ts`: `/programs` 页面按需加载全量项目库，当前接入 QS Top80 官方核验库。
+- `src/data/realPrograms.json`: 6,715 个核验硕士项目，构建时作为独立静态 JSON 资产输出。
+- `src/data/programCatalogueStats.json`: 项目库轻量统计，供首页/洞察页展示覆盖规模。
 - `src/data/cases.ts` + `src/data/casesExtra.ts`: 匿名合成种子案例。
 - `src/data/allCases.ts`: 合并后的单一数据源，被 `search.ts` / `analytics.ts` / `repository.ts` 消费。
 - `src/lib/types.ts`: 稳定数据模型。
@@ -34,10 +37,11 @@ GlobalView 是一个面向中国留学生的硕士研究生申请案例情报库
 
 ## Replacing Seed Data with Real Data
 
-1. 用 `scripts/import-cases.mjs` 把 CSV/JSON 转换为 `CaseRecord[]`。
-2. 完成匿名脱敏（见隐私字段清单）。
-3. 把结果合并进 `src/data/allCases.ts`，或让 `repository.ts` 改为请求后端 API。
-4. 前端无需改动检索/洞察逻辑——它们都基于 `allCases` 与稳定的 `types.ts`。
+1. 用 `scripts/import-qs-verified.mjs` 把 QS Top80 核验输出目录转换为 `realPrograms.json` 和 `programCatalogueStats.json`。
+2. 用 `scripts/import-cases.mjs` 把案例 CSV/JSON 转换为 `CaseRecord[]`。
+3. 完成匿名脱敏（见隐私字段清单）。
+4. 把案例结果写入 `src/data/realCases.json`，或推送至 Supabase 后由 `db:export` 导回前端。
+5. 前端无需改动检索/洞察逻辑——它们都基于稳定的 `types.ts`、`allCases` 与项目 catalogue。
 
 ## Future Backend
 

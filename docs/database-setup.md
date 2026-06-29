@@ -10,14 +10,14 @@
 
 | | 方式 A · 静态数据 | 方式 B · 真实数据库 |
 |---|---|---|
-| 数据存放 | `src/data/realPrograms.json`、`src/data/realCases.json` | PostgreSQL（Vercel Marketplace） |
+| 数据存放 | `src/data/realPrograms.json`、`src/data/programCatalogueStats.json`、`src/data/realCases.json` | PostgreSQL / Supabase |
 | 是否需要服务器 | 否 | 是（仅构建期或运行期） |
-| 适用规模 | ≤ 约 3000 条案例 | 不限 |
+| 适用规模 | 已验证 6,715 条项目；案例建议分批接入 | 不限 |
 | 多人协作写入 | 不适合 | 适合 |
 | 改动成本 | **零代码**，只放数据 | 建表 + 1 个导出脚本 |
 | 上手时间 | 约 10 分钟 | 约 1–2 小时 |
 
-> 前端的检索、洞察、图表逻辑全部基于统一数据集 `src/data/allCases.ts` 与项目表 `src/data/programSources.ts`，**两种方式最终都汇入这两个出口**，所以你随时可以从 A 平滑升级到 B，界面无需改动。
+> 案例检索、洞察、图表逻辑基于统一案例数据集 `src/data/allCases.ts`；全量项目库由 `src/data/programCatalogue.ts` 在 `/programs` 页面按需加载 `realPrograms.json`，首页和洞察页只读取轻量统计 `programCatalogueStats.json`。
 
 ---
 
@@ -29,9 +29,9 @@
 
 | 枚举 | 允许值 |
 |---|---|
-| `country`（国家代码） | `US` `UK` `CA` `AU` `SG` `HK` `CH` `DE` `NL` `JP` |
+| `country`（国家代码） | `US` `UK` `CA` `AU` `SG` `HK` `CH` `DE` `NL` `JP` `CN` `FR` `KR` `MY` `TW` `SE` `SA` `BE` `IE` `NZ` |
 | `result`（申请结果） | `admit`（录取） `conditional`（条件录取） `waitlist`（等待名单） `reject`（拒信） |
-| `discipline`（专业方向） | `计算机与数据` `商业分析` `管理与市场` `信息系统` `金融商科` |
+| `discipline`（专业方向） | `计算机与数据` `商业分析` `管理与市场` `信息系统` `金融商科` `工程与技术` `医学与健康` `人文学科` `商业与管理` `社会科学` `艺术设计与建筑` `教育` `计算机与信息技术` `生命科学与生物` `经济与金融` `数据科学与人工智能` `环境与可持续发展` `自然科学` `法学` `公共政策与管理` `数学与统计` `媒体与传播` |
 | `undergradTier`（本科层级） | `C9/985` `211` `双非一本` `中外合作` `海外本科` |
 | `selectivity`（项目竞争度） | `高竞争` `中高竞争` `稳健匹配` |
 
@@ -48,6 +48,7 @@
 | `university` | ✅ | string | `The University of Hong Kong` | 英文校名 |
 | `universityCn` | ✅ | string | `香港大学` | 中文校名 |
 | `program` | ✅ | string | `MSc in Data Science` | 英文项目名 |
+| `programZh` | ⬜ | string | `數據科學理學碩士` | 中文项目名（如官网提供） |
 | `degree` | ✅ | string | `MSc` | 学位简称 |
 | `discipline` | ✅ | 枚举 | `计算机与数据` | 见 1.1 |
 | `duration` | ✅ | string | `1-2 年` | 学制 |
@@ -57,8 +58,17 @@
 | `sourceNote` | ⬜ | string | `项目信息以官方页面为准。` | 数据来源备注 |
 | `tags` | ⬜ | string[] | `["data science","ml"]` | 标签 |
 | `qsRank` | ⬜ | number | `17` | QS 参考排名 |
+| `universityId` | ⬜ | string | `hku` | 院校稳定 ID |
+| `faculty` / `department` | ⬜ | string | `Faculty of Engineering` | 学院 / 系 |
+| `rawDiscipline` | ⬜ | string | `Computer Science & IT` | 原始英文学科分类 |
 | `tuition` | ⬜ | string | `约 HK$240,000 / 项目` | 学费参考 |
 | `deadlineNote` | ⬜ | string | `主轮 12 月至 3 月` | 截止参考 |
+| `languageRequirements` | ⬜ | string | `TOEFL iBT 79 or IELTS 6.0` | 语言要求 |
+| `greRequired` | ⬜ | string | `Optional` | GRE/GMAT 要求 |
+| `entryRequirements` | ⬜ | string | `Bachelor's degree...` | 入学要求摘要 |
+| `sourceUrls` | ⬜ | string[] | `["https://..."]` | 来源页 |
+| `dataCompleteness` | ⬜ | number | `47` | 字段完整度百分比 |
+| `lastUpdated` | ⬜ | string | `2026-06-29` | 核验更新时间 |
 | `stemDesignated` | ⬜ | boolean | `true` | 是否 STEM |
 
 ### 1.3 案例表 CaseRecord（`realCases.json` 的每个元素）
@@ -124,11 +134,12 @@
 
 | 放什么 | 放到哪里 | 怎么生成 |
 |---|---|---|
-| 项目数据 | `src/data/realPrograms.json` | 手填，或 `npm run import:programs` |
+| 项目数据 | `src/data/realPrograms.json` | 手填，`npm run import:programs`，或 `npm run import:qs-verified` |
+| 项目统计 | `src/data/programCatalogueStats.json` | `npm run import:qs-verified` 自动生成 |
 | 案例数据 | `src/data/realCases.json` | `npm run import:cases` |
 | 校验 | — | `npm run validate:data` |
 
-> 这两个 JSON **初始是空数组 `[]`，此时网站显示内置种子数据**；一旦它们变成非空数组，就会自动替换种子数据（逻辑见 `src/data/allCases.ts` 与 `src/data/programSources.ts`）。
+> `realCases.json` 初始是空数组 `[]`，此时网站显示内置种子案例；一旦非空就会替换种子案例。`realPrograms.json` 当前已填充 QS Top80 核验项目库，并由 `/programs` 页面按需加载，避免拖慢首页。
 
 ### 步骤 3.1 准备项目数据
 
@@ -165,6 +176,14 @@
 ```bash
 npm run import:programs -- 你的项目表.csv src/data/realPrograms.json
 ```
+
+**方式③（QS Top80 核验库，当前采用）**：从核验输出目录生成全量项目库和轻量统计：
+
+```bash
+npm run import:qs-verified -- /path/to/outputs_verified src/data/realPrograms.json src/data/programCatalogueStats.json
+```
+
+该脚本读取 `programs.json` 与 `universities.json`，生成 6,715 个 `ProgramSource` 对象，并同时生成首页/洞察页使用的轻量覆盖统计。
 
 ### 步骤 3.2 准备案例数据
 
@@ -205,7 +224,7 @@ git commit -m "data: load real programs & cases"
 git push origin <你的分支>:main
 ```
 
-> ⚠ 数据量很大时，构建产物会变大（JSON 内联进前端包）。当 `realCases.json` 超过约 2–3 MB / 数千条，请改用方式 B。
+> 当前全量项目库不会内联进主包：Vite 会把 `realPrograms.json` 输出为独立静态 JSON 资产，只有进入 `/programs` 时才下载。
 
 ---
 

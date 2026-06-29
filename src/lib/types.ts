@@ -10,7 +10,17 @@ export type CountryCode =
   | "CH"
   | "DE"
   | "NL"
-  | "JP";
+  | "JP"
+  | "CN"
+  | "FR"
+  | "KR"
+  | "MY"
+  | "TW"
+  | "SE"
+  | "SA"
+  | "BE"
+  | "IE"
+  | "NZ";
 
 export type AdmissionResult =
   | "admit"
@@ -23,7 +33,24 @@ export type Discipline =
   | "商业分析"
   | "管理与市场"
   | "信息系统"
-  | "金融商科";
+  | "金融商科"
+  | "工程与技术"
+  | "医学与健康"
+  | "人文学科"
+  | "商业与管理"
+  | "社会科学"
+  | "艺术设计与建筑"
+  | "教育"
+  | "计算机与信息技术"
+  | "生命科学与生物"
+  | "经济与金融"
+  | "数据科学与人工智能"
+  | "环境与可持续发展"
+  | "自然科学"
+  | "法学"
+  | "公共政策与管理"
+  | "数学与统计"
+  | "媒体与传播";
 
 export type UndergraduateTier =
   | "C9/985"
@@ -36,12 +63,14 @@ export type ProgramSelectivity = "高竞争" | "中高竞争" | "稳健匹配";
 
 export interface ProgramSource {
   id: string;
+  universityId?: string;
   country: CountryCode;
   countryName: string;
   city: string;
   university: string;
   universityCn: string;
   program: string;
+  programZh?: string;
   degree: string;
   discipline: Discipline;
   duration: string;
@@ -52,8 +81,19 @@ export interface ProgramSource {
   tags: string[];
   /** Optional enrichment used by the Programs catalogue. Safe to omit for imports. */
   qsRank?: number;
+  universityType?: string;
+  region?: string;
+  faculty?: string;
+  department?: string;
+  rawDiscipline?: string;
   tuition?: string;
   deadlineNote?: string;
+  languageRequirements?: string;
+  greRequired?: string;
+  entryRequirements?: string;
+  sourceUrls?: string[];
+  dataCompleteness?: number;
+  lastUpdated?: string;
   stemDesignated?: boolean;
 }
 

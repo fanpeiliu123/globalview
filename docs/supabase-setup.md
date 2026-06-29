@@ -46,6 +46,10 @@ Supabase 控制台 → **SQL Editor** → New query → 粘贴 `supabase/schema.
    npm run import:programs -- 你的项目.csv src/data/realPrograms.json
    npm run import:cases    -- 你的案例.csv src/data/realCases.json
    ```
+   QS Top80 核验项目库可直接使用：
+   ```bash
+   npm run import:qs-verified -- /path/to/outputs_verified src/data/realPrograms.json src/data/programCatalogueStats.json
+   ```
 3. 校验后推送到 Supabase：
    ```bash
    npm run validate:data
@@ -118,6 +122,7 @@ vercel env add SUPABASE_SERVICE_ROLE_KEY production
 | `npm run db:export` | 从 Supabase 导出到 `src/data/real*.json` |
 | `npm run validate:data` | 校验数据（枚举/外键/隐私等） |
 | `npm run import:programs -- in.csv out.json` | 项目 CSV→JSON |
+| `npm run import:qs-verified -- outputs_verified out.json stats.json` | QS Top80 核验库→项目 JSON + 统计 JSON |
 | `npm run import:cases -- in.csv out.json` | 案例 CSV→JSON |
 | `npm run build` | 构建（自动 prebuild：db:export + validate） |
 
@@ -134,4 +139,4 @@ vercel env add SUPABASE_SERVICE_ROLE_KEY production
 
 **Q：想要前端实时读 Supabase（不重新部署）？** 可改为运行时用 `@supabase/supabase-js` 的 anon key + RLS 直接查询（需要把页面改成异步取数）。当前为静态导出方案，数据更新频率不高时更省更稳；需要实时可再告诉我。
 
-**Q：数据量很大？** 导出脚本已分页（每页 1000）。若案例上万、内联 JSON 过大影响前端体积，再切运行时查询方案。
+**Q：数据量很大？** 导出脚本已分页（每页 1000）。当前项目库已按静态 JSON 资产懒加载，6,715 条项目不会进入主包。若真实案例上万、前端交互开始变慢，再切运行时查询方案。

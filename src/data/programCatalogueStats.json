@@ -1,0 +1,186 @@
+{
+  "source": "QS Top80 verified programme database",
+  "programs": 6715,
+  "universities": 80,
+  "countries": 20,
+  "disciplines": 17,
+  "withTuition": 106,
+  "withDeadline": 112,
+  "withLanguage": 941,
+  "withGre": 215,
+  "avgCompleteness": 36,
+  "lastUpdated": "2026-06-29",
+  "countryCounts": [
+    {
+      "key": "UK",
+      "count": 1874
+    },
+    {
+      "key": "US",
+      "count": 1439
+    },
+    {
+      "key": "AU",
+      "count": 536
+    },
+    {
+      "key": "HK",
+      "count": 392
+    },
+    {
+      "key": "CA",
+      "count": 358
+    },
+    {
+      "key": "FR",
+      "count": 287
+    },
+    {
+      "key": "CN",
+      "count": 253
+    },
+    {
+      "key": "KR",
+      "count": 251
+    },
+    {
+      "key": "DE",
+      "count": 216
+    },
+    {
+      "key": "SG",
+      "count": 182
+    },
+    {
+      "key": "NL",
+      "count": 149
+    },
+    {
+      "key": "SE",
+      "count": 147
+    },
+    {
+      "key": "MY",
+      "count": 129
+    },
+    {
+      "key": "NZ",
+      "count": 98
+    },
+    {
+      "key": "TW",
+      "count": 91
+    },
+    {
+      "key": "JP",
+      "count": 87
+    },
+    {
+      "key": "CH",
+      "count": 77
+    },
+    {
+      "key": "SA",
+      "count": 75
+    },
+    {
+      "key": "BE",
+      "count": 38
+    },
+    {
+      "key": "IE",
+      "count": 36
+    }
+  ],
+  "disciplineCounts": [
+    {
+      "key": "工程与技术",
+      "count": 943
+    },
+    {
+      "key": "医学与健康",
+      "count": 788
+    },
+    {
+      "key": "人文学科",
+      "count": 634
+    },
+    {
+      "key": "商业与管理",
+      "count": 525
+    },
+    {
+      "key": "社会科学",
+      "count": 513
+    },
+    {
+      "key": "艺术设计与建筑",
+      "count": 405
+    },
+    {
+      "key": "教育",
+      "count": 343
+    },
+    {
+      "key": "计算机与信息技术",
+      "count": 342
+    },
+    {
+      "key": "生命科学与生物",
+      "count": 341
+    },
+    {
+      "key": "经济与金融",
+      "count": 299
+    },
+    {
+      "key": "数据科学与人工智能",
+      "count": 293
+    },
+    {
+      "key": "环境与可持续发展",
+      "count": 272
+    },
+    {
+      "key": "自然科学",
+      "count": 252
+    },
+    {
+      "key": "法学",
+      "count": 215
+    },
+    {
+      "key": "公共政策与管理",
+      "count": 212
+    },
+    {
+      "key": "数学与统计",
+      "count": 201
+    },
+    {
+      "key": "媒体与传播",
+      "count": 137
+    }
+  ],
+  "featuredUniversities": [
+    "Massachusetts Institute of Technology",
+    "Imperial College London",
+    "Stanford University",
+    "University of Oxford",
+    "Harvard University",
+    "University of Cambridge",
+    "ETH Zurich",
+    "National University of Singapore",
+    "University College London",
+    "California Institute of Technology",
+    "The University of Hong Kong",
+    "Nanyang Technological University, Singapore",
+    "Peking University",
+    "University of Pennsylvania",
+    "Cornell University",
+    "Tsinghua University",
+    "University of California, Berkeley",
+    "The University of Melbourne",
+    "The University of New South Wales"
+  ]
+}
