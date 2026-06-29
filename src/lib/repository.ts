@@ -1,4 +1,5 @@
 import { allCases as admissionCases } from "../data/allCases";
+import { loadProgramCatalogue } from "../data/programCatalogue";
 import { programSources } from "../data/programSources";
 import type {
   AiRetrievalRequest,
@@ -19,7 +20,7 @@ export interface CaseRepository {
 
 export const localCaseRepository: CaseRepository = {
   async listPrograms() {
-    return programSources;
+    return loadProgramCatalogue();
   },
   async searchMasterCases(filters) {
     return searchCases(filters).map((result) => result.caseRecord);
@@ -33,6 +34,21 @@ export const localCaseRepository: CaseRepository = {
 };
 
 export const plannedApiRoutes = [
+  {
+    method: "GET",
+    path: "/api/programs",
+    purpose: "硕士项目库检索、国家 / 大学 / 项目过滤",
+  },
+  {
+    method: "GET",
+    path: "/api/programs/:id",
+    purpose: "单个项目详情、官方链接与字段覆盖状态",
+  },
+  {
+    method: "GET",
+    path: "/api/program-catalogue/stats",
+    purpose: "项目库覆盖率、字段完整度与导入批次概览",
+  },
   {
     method: "GET",
     path: "/api/master-cases",
@@ -52,6 +68,11 @@ export const plannedApiRoutes = [
     method: "POST",
     path: "/api/import/cases",
     purpose: "用户提供案例文件后的结构化导入",
+  },
+  {
+    method: "POST",
+    path: "/api/import/programs",
+    purpose: "QS / 用户项目库文件的结构化导入与核验",
   },
   {
     method: "POST",

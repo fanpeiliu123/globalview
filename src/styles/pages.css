@@ -904,6 +904,14 @@
   background: var(--accent-soft);
 }
 .delivery-section { margin-bottom: 28px; }
+.section-kicker {
+  margin: 18px 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 .api-table { overflow: hidden; }
 .api-row {
   display: grid;

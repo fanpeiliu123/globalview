@@ -11,7 +11,35 @@ import { useDocumentMeta } from "../lib/useDocumentMeta";
 import { Reveal } from "../components/ui/common";
 import { plannedApiRoutes } from "../lib/repository";
 
-const importFields = [
+const programImportFields = [
+  "id",
+  "universityId",
+  "country",
+  "countryName",
+  "city",
+  "university",
+  "universityCn",
+  "program",
+  "programZh",
+  "degree",
+  "discipline",
+  "duration",
+  "intake",
+  "qsRank",
+  "faculty",
+  "department",
+  "tuition",
+  "deadlineNote",
+  "languageRequirements",
+  "greRequired",
+  "entryRequirements",
+  "officialUrl",
+  "sourceUrls",
+  "dataCompleteness",
+  "lastUpdated",
+];
+
+const caseImportFields = [
   "country",
   "university",
   "program",
@@ -80,14 +108,15 @@ export function DeliveryPage() {
           <h3>{t("delivery.import.title")}</h3>
           <p>{t("delivery.import.desc")}</p>
           <ol className="delivery-steps">
-            <li>{pick("准备 CSV / JSON 文件", "Prepare a CSV / JSON file")}</li>
-            <li>{pick("运行导入脚本完成结构化与脱敏", "Run the import script to structure & anonymize")}</li>
+            <li>{pick("准备项目库或案例 CSV / JSON 文件", "Prepare a programme or case CSV / JSON file")}</li>
+            <li>{pick("运行导入脚本完成结构化、核验与脱敏", "Run the import script to structure, verify & anonymize")}</li>
             <li>{pick("接入 repository 或服务端数据库", "Wire into the repository or a server database")}</li>
           </ol>
           <div className="code-block">
             <div className="code-head">
               <Terminal size={13} /> {t("delivery.script.title")}
             </div>
+            <pre>npm run import:qs-verified -- /path/to/outputs_verified</pre>
             <pre>npm run import:cases -- docs/case-import-template.csv data/generated-cases.json</pre>
           </div>
         </Reveal>
@@ -134,8 +163,15 @@ export function DeliveryPage() {
         <h2 className="block-title with-icon">
           <FileDown size={18} /> {t("delivery.fields.title")}
         </h2>
+        <h3 className="section-kicker">{pick("硕士项目库字段", "Master programme fields")}</h3>
         <div className="fields-grid">
-          {importFields.map((field) => (
+          {programImportFields.map((field) => (
+            <code key={field} className="field-token">{field}</code>
+          ))}
+        </div>
+        <h3 className="section-kicker">{pick("匿名申请案例字段", "Anonymous case fields")}</h3>
+        <div className="fields-grid">
+          {caseImportFields.map((field) => (
             <code key={field} className="field-token">{field}</code>
           ))}
         </div>
